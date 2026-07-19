@@ -18,7 +18,13 @@ public class SlimefunProvider implements ItemProvider {
     );
 
     public static boolean isAvailable() {
-        return Bukkit.getPluginManager().getPlugin("Slimefun") != null;
+        if (Bukkit.getPluginManager().getPlugin("Slimefun") == null) return false;
+        try {
+            Class.forName("io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem");
+        } catch (Exception e) {
+            return false;
+        }
+        return true;
     }
 
     @Override
